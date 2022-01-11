@@ -21,6 +21,7 @@
 
    println("Here is a mess: " + numberOne + truth + letterA + pi + bigNumber)
 
+//   https://docs.scala-lang.org/overviews/core/string-interpolation.html
    println(f"Pi is about $piSinglePrecision%.3f")
    println(f"Zero padding on the left: $numberOne%05d")
 
@@ -47,3 +48,5 @@
    // EXERCISE
    // Write some code that takes the value of pi, doubles it, and then prints it within a string with
    // three decimal places of precision to the right.
+
+   println(f"pi doubels is ${pi*2}%.3f")
