@@ -74,13 +74,14 @@ println(archersShip)
 // because 9 is evenly divisible by 3.) Do this first by iterating through all the items in the list and testing each
 // one as you go. Then, do it again by using a filter function on the list instead.
 var intList = Range(1, 21).toList
-
+println("loop")
 for (x <- intList) {
   if (x % 3 == 0)
-  println(x)
+    println(x)
 }
 
-println(f"===============${intList.updated(0,555).apply(0)}%05d")
+println(f"===============${intList.updated(0, 555).apply(0)}%05d")
+println("list filter")
 for (elem <- intList.filter((x: Int) => x % 3 == 0)) {
   println(elem)
 }
