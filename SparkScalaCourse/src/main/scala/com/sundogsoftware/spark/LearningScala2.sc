@@ -57,33 +57,33 @@ println({
 // using list
 println("Using Array")
 var count = 3
-var fa = Array(0,1)
+var fa = Array(0, 1)
 println(fa.apply(0))
 println(fa.apply(0))
 println(1)
 do {
   val sum = fa.sum
   println(sum)
-  fa.update(0,fa.apply(1))
-  fa.update(1,sum)
+  fa.update(0, fa.apply(1))
+  fa.update(1, sum)
   count += 1
 } while (count <= 10)
 
 //using variable
 println("Using variable")
-var first =0
+var first = 0
 var second = 1
 count = 3
 println(first)
 println(second)
 do {
-  val tmp = first+second
+  val tmp = first + second
   println(tmp)
-  first=second
-  second=tmp
-  count+=1
-}while(count<11)
+  first = second
+  second = tmp
+  count += 1
+} while (count < 11)
 
-for (a <- Range(3,11)){
-println(a)
+for (a <- Range(3, 11)) {
+  println(a)
 }
