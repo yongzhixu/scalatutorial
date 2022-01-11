@@ -29,16 +29,20 @@
 
    println(s"The s prefix isn't limited to variables; I can include any expression. Like ${1+2}")
 
-   val theUltimateAnswer: String = "To life, the universe, and everything is 42."
+   val theUltimateAnswer: String = "To life, the universe, and 123. every33thing is 42. 4552."
    val pattern = """.* ([\d]+).*""".r
    val pattern(answerString) = theUltimateAnswer
+   println(answerString)
    val answer = answerString.toInt
    println(answer)
 
    // Booleans
    val isGreater = 1 > 2
    val isLesser = 1 < 2
+//   bitwise
    val impossible = isGreater & isLesser
+//   && logical operator
+   val impossibleAnother = isGreater && isLesser
    val anotherWay = isGreater || isLesser
 
    val picard: String = "Picard"
