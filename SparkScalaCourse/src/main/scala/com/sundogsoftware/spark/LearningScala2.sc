@@ -1,3 +1,4 @@
+import java.util
 // Flow control
 
 // If / else:
@@ -32,15 +33,57 @@ while (x >= 0) {
 }
 
 x = 0
-do { println(x); x+=1 } while (x <= 10)
+do {
+  println(x);
+  x += 1
+} while (x <= 10)
 
 // Expressions
 
-{val x = 10; x + 20}
+{
+  val x = 10;
+  x + 20
+}
 
-println({val x = 10; x + 20})
+println({
+  val x = 10;
+  x + 20
+})
 
 // EXERCISE
 // Write some code that prints out the first 10 values of the Fibonacci sequence.
 // This is the sequence where every number is the sum of the two numbers before it.
 // So, the result should be 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
+// using list
+println("Using Array")
+var count = 3
+var fa = Array(0,1)
+println(fa.apply(0))
+println(fa.apply(0))
+println(1)
+do {
+  val sum = fa.sum
+  println(sum)
+  fa.update(0,fa.apply(1))
+  fa.update(1,sum)
+  count += 1
+} while (count <= 10)
+
+//using variable
+println("Using variable")
+var first =0
+var second = 1
+count = 3
+println(first)
+println(second)
+do {
+  val tmp = first+second
+  println(tmp)
+  first=second
+  second=tmp
+  count+=1
+}while(count<11)
+
+for (a <- Range(3,11)){
+println(a)
+}
