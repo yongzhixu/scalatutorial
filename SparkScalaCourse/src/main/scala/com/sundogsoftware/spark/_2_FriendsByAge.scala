@@ -31,6 +31,10 @@ object _2_FriendsByAge {
     
     // Use our parseLines function to convert to (age, numFriends) tuples
     val rdd = lines.map(parseLine)
+
+//    difference between map and mapvalues
+    rdd.map(x => (x, 1)).foreach(println)
+    rdd.mapValues(x => (x, 1)).foreach(println)
     
     // Lots going on here...
     // We are starting with an RDD of form (age, numFriends) where age is the KEY and numFriends is the VALUE
