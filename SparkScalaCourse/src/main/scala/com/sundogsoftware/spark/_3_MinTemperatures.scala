@@ -5,7 +5,7 @@ import org.apache.log4j._
 import scala.math.min
 
 /** Find the minimum temperature by weather station */
-object MinTemperatures {
+object _3_MinTemperatures {
   
   def parseLine(line:String): (String, String, Float) = {
     val fields = line.split(",")

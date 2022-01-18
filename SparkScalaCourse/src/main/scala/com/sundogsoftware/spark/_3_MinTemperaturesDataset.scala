@@ -6,7 +6,7 @@ import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions._
 
 /** Find the minimum temperature by weather station */
-object MinTemperaturesDataset {
+object _3_MinTemperaturesDataset {
 
   case class Temperature(stationID: String, date: Int, measure_type: String, temperature: Float)
 

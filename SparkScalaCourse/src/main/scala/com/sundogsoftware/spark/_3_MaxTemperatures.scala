@@ -5,7 +5,7 @@ import org.apache.log4j._
 import scala.math.max
 
 /** Find the maximum temperature by weather station for a year */
-object MaxTemperatures {
+object _3_MaxTemperatures {
   
   def parseLine(line:String): (String, String, Float) = {
     val fields = line.split(",")
