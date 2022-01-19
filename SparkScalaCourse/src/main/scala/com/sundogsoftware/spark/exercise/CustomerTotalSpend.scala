@@ -3,7 +3,7 @@ package com.sundogsoftware.spark.exercise
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.SparkContext
 
-object CustomerTotalSpendO {
+object CustomerTotalSpend {
 
   def parseLine(line: String): (String, Float) = {
     val fields = line.split(',')
