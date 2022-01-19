@@ -6,7 +6,7 @@ import org.apache.spark.sql.functions._
 import org.apache.spark.sql.types.{IntegerType, LongType, StructType}
 
 /** Find the movies with the most ratings. */
-object PopularMoviesDataset {
+object _6_PopularMoviesDataset {
 
   // Case class so we can get a column name for our movie ID
   final case class Movie(movieID: Int)

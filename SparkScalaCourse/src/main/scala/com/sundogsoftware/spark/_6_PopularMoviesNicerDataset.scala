@@ -8,7 +8,7 @@ import org.apache.spark.sql.types.{IntegerType, LongType, StructType}
 import scala.io.{Codec, Source}
 
 /** Find the movies with the most ratings. */
-object PopularMoviesNicerDataset {
+object _6_PopularMoviesNicerDataset {
 
   case class Movies(userID: Int, movieID: Int, rating: Int, timestamp: Long)
 

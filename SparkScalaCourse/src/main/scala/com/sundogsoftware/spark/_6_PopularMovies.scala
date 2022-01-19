@@ -5,7 +5,7 @@ import org.apache.log4j._
 import org.apache.spark.rdd.RDD
 
 /** Find the movies with the most ratings. */
-object PopularMovies {
+object _6_PopularMovies {
  
   /** Our main function where the action happens */
   def main(args: Array[String]) {
