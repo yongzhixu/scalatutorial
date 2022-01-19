@@ -61,5 +61,7 @@ object CustomerTotalSpendDataSet {
       .sum("spend")
 
     totalSpendByCustomerSum.sort("sum(spend)").show(200)
+
+    spark.stop()
   }
 }

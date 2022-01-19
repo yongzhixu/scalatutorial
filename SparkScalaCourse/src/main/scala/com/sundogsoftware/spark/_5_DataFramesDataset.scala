@@ -3,7 +3,7 @@ package com.sundogsoftware.spark
 import org.apache.spark.sql._
 import org.apache.log4j._
     
-object DataFramesDataset {
+object _5_DataFramesDataset {
   
   case class Person(id:Int, name:String, age:Int, friends:Int)
 

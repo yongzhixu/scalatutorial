@@ -1,5 +1,5 @@
 package com.sundogsoftware.spark.csv
-import com.sundogsoftware.spark.FriendsByAgeDataset.FakeFriends
+import com.sundogsoftware.spark._2_FriendsByAgeDataset.FakeFriends
 import org.apache.spark.sql.{SQLContext, SparkSession}
 import org.apache.spark.{SparkConf, SparkContext}
 

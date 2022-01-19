@@ -5,7 +5,7 @@ import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions._
 
 /** Compute the average number of friends by age in a social network. */
-object FriendsByAgeDataset {
+object _2_FriendsByAgeDataset {
 
   // Create case class with schema of fakefriends.csv
   case class FakeFriends(id: Int, name: String, age: Int, friends: Long)
