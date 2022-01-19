@@ -49,7 +49,7 @@ object CustomerTotalSpendDataSet {
         .alias("total_spend"))
       .sort("total_spend")
 
-    totalSpendByCustomer.collect().foreach(println)
+//    totalSpendByCustomer.collect().foreach(println)
     for (spend <- totalSpendByCustomer.collect()) {
       println(s"${spend}, Customer ${spend(0)}, spent ${spend(1)} in total")
     }
