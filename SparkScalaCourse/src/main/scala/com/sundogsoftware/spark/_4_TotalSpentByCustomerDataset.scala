@@ -6,7 +6,7 @@ import org.apache.spark.sql.types.{DoubleType, IntegerType, StructType}
 import org.apache.spark.sql.functions._
 
 /** Compute the total amount spent per customer in some fake e-commerce data. */
-object TotalSpentByCustomerDataset {
+object _4_TotalSpentByCustomerDataset {
 
   case class CustomerOrders(cust_id: Int, item_id: Int, amount_spent: Double)
 

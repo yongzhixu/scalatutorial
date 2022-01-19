@@ -4,7 +4,7 @@ import org.apache.spark._
 import org.apache.log4j._
 
 /** Compute the total amount spent per customer in some fake e-commerce data. */
-object TotalSpentByCustomerSorted {
+object _4_TotalSpentByCustomerSorted {
   
   /** Convert input data to (customerID, amountSpent) tuples */
   def extractCustomerPricePairs(line: String): (Int, Float) = {
