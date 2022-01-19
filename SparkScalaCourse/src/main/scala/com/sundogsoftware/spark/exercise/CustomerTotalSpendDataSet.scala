@@ -41,6 +41,7 @@ object CustomerTotalSpendDataSet {
       .csv("data/customer-orders.csv")
       .as[CustomerSpend]
 
+    <!-- using agg-->
     val totalSpendByCustomer = dataSet
       .select("customer", "spend")
       .groupBy("customer")
@@ -48,16 +49,17 @@ object CustomerTotalSpendDataSet {
         .alias("total_spend"))
       .sort("total_spend")
 
-    <!-- THIS WONT WORK-->
-    //    val totalSpendByCustomer = dataSet
-    //      .select("customer", "spend")
-    //      .groupBy("customer")
-    //      .sum("spend")
-    //      .sort("spend")
-
     totalSpendByCustomer.collect().foreach(println)
     for (spend <- totalSpendByCustomer.collect()) {
       println(s"${spend}, Customer ${spend(0)}, spent ${spend(1)} in total")
     }
+
+    <!-- using sum-->
+    val totalSpendByCustomerSum = dataSet
+      .select("customer", "spend")
+      .groupBy("customer")
+      .sum("spend")
+
+    totalSpendByCustomerSum.sort("sum(spend)").show(200)
   }
 }
