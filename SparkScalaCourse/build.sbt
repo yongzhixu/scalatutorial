@@ -12,5 +12,6 @@ libraryDependencies ++= Seq(
   "org.apache.kudu" % "kudu-client" % "1.15.0",
   "org.apache.kudu" % "kudu-spark3_2.12" % "1.15.0",
   "org.twitter4j" % "twitter4j-core" % "4.0.4",
-  "org.twitter4j" % "twitter4j-stream" % "4.0.4"
+  "org.twitter4j" % "twitter4j-stream" % "4.0.4",
+  "mysql" % "mysql-connector-java" % "8.0.26"
 )
