@@ -1,2 +1,0 @@
-# scalatutorial
-scalatutorial

@@ -61,6 +61,7 @@ object _6_PopularMoviesNicerDataset {
       .option("sep", "\t")
       .schema(moviesSchema)
       .csv("data/ml-100k/u.data")
+//      Movies class don't have to contain every columns listed in the schema, only some of them is okay
       .as[Movies]
 
     // Get number of reviews per movieID

@@ -4,7 +4,7 @@ import org.apache.spark._
 import org.apache.log4j._
 
 /** Find the superhero with the most co-appearances. */
-object MostPopularSuperhero {
+object _7_MostPopularSuperhero {
   
   // Function to extract the hero ID and number of connections from each line
   def countCoOccurrences(line: String): (Int, Int) = {

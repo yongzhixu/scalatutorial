@@ -6,7 +6,7 @@ import org.apache.spark.sql.functions._
 import org.apache.spark.sql.types.{IntegerType, StringType, StructType}
 
 /** Find the superhero with the most co-appearances. */
-object MostPopularSuperheroDataset {
+object _7_MostPopularSuperheroDataset {
 
   case class SuperHeroNames(id: Int, name: String)
   case class SuperHero(value: String)
