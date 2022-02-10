@@ -47,7 +47,7 @@ object MysqlBatchWriteData {
     testDF.persist(StorageLevel.MEMORY_AND_DISK)
     testDF.printSchema()
 
-    val result = s"select * from fakefriends"
+    val result = s"select * from fakefriends LIMIT 10"
     //        S' '-- SQL code
     //        """.stripMargin
 
@@ -93,7 +93,7 @@ object MysqlBatchWriteData {
           pstmt.setString(1, person.id+"china")
           pstmt.setString(2, person.name)
           pstmt.setString(3, person.age)
-          pstmt.setString(4, person.friends.toString)
+          pstmt.setString(4, person.friends)
           //Add batch
           pstmt.addBatch()
           batchIndex += 1

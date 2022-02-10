@@ -33,7 +33,7 @@ object MysqlLoadData {
       .option("dbtable", table)
       .option("user", user)
       .option("password", password)
-      .option("driver", "com.mysql.cj.jdbc.Driver")
+//      .option("driver", "com.mysql.cj.jdbc.Driver")
       .load())
 
     //    Show the DataFrame

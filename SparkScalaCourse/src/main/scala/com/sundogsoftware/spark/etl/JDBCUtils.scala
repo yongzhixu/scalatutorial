@@ -1,7 +1,7 @@
 package com.sundogsoftware.spark.etl
 
 import java.sql.{Connection, DriverManager, PreparedStatement}
-
+import com.mysql.cj.jdbc.Driver
 
 object JDBCUtils {
 

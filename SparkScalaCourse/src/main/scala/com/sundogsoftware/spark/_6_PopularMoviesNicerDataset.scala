@@ -85,7 +85,7 @@ object _6_PopularMoviesNicerDataset {
     val sortedMoviesWithNames = moviesWithNames.sort("count")
 
     // Show the results without truncating it
-    sortedMoviesWithNames.show(sortedMoviesWithNames.count.toInt, truncate = false)
+    sortedMoviesWithNames.show(sortedMoviesWithNames.count.toInt, truncate = true)
   }
 }
 
