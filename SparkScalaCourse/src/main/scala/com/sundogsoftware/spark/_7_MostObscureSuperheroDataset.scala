@@ -41,7 +41,7 @@ object _7_MostObscureSuperheroDataset {
 
     val occurrences = occurrencesLine
       .withColumn("id", split(col("value"), " ")(0))
-      .withColumn("occurs", split(col("value"), " ")(1) - 1)
+      .withColumn("occurs", size(split(col("value"), " ")) - 1)
       .groupBy("id").agg(sum("occurs").alias("occurs"))
 
     val mostObscure = occurrences
@@ -57,5 +57,19 @@ object _7_MostObscureSuperheroDataset {
     println(s"${mostObscureName} ================")
     println(s"${mostObscureName(0)} is the most obscure superhero with ${mostObscure(1)} occurrences ")
 
+
+    <!-- ============== To find out all name with least occurrence -->
+
+    //find out the least occurrences
+    val minConnectionOccurrence = occurrences.agg(min("occurs")).first().getLong(0)
+    val mostObscureAll = occurrences
+      .filter($"occurs" === minConnectionOccurrence)
+      .sort($"occurs".asc)
+
+    val mostObscureAllWithNames = mostObscureAll.join(names, usingColumn = "id")
+
+    println(s"The following characters have only ${minConnectionOccurrence} connection(s):")
+    mostObscureAllWithNames.schema.printTreeString()
+    mostObscureAllWithNames.select("name").show()
   }
 }
