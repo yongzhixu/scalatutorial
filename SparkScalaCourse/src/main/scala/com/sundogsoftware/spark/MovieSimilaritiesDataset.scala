@@ -104,7 +104,8 @@ object MovieSimilaritiesDataset {
         $"ratings2.rating".alias("rating2")
       ).as[MoviePairs]
 
-    val moviePairSimilarities = computeCosineSimilarity(spark, moviePairs).cache()
+//    val moviePairSimilarities = computeCosineSimilarity(spark, moviePairs).cache()
+    val moviePairSimilarities = computeCosineSimilarity(spark, moviePairs).persist()
 
     if (args.length > 0) {
       val scoreThreshold = 0.97

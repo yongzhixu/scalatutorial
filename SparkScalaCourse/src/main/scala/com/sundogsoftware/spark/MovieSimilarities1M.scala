@@ -103,6 +103,7 @@ object MovieSimilarities1M {
     // We want EMR's config defaults to be used.
     val conf = new SparkConf()
     conf.setAppName("MovieSimilarities1M")
+    conf.setMaster("local[*]")
     val sc = new SparkContext(conf)
     
     println("\nLoading movie names...")
