@@ -9,7 +9,7 @@ import scala.collection.mutable.ArrayBuffer
 /** Finds the degrees of separation between two Marvel comic book characters, based
  * on co-appearances in a comic.
  */
-object DegreesOfSeparation {
+object _8_DegreesOfSeparation {
 
   // The characters we want to find the separation between.
   val startCharacterID = 5306 //SpiderMan
