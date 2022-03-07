@@ -19,5 +19,7 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-sql-kafka-0-10" % "3.1.2",
   "org.apache.spark" %% "spark-streaming-flume" % "2.4.8",
   "org.apache.spark" %% "spark-streaming-kafka-0-10" % "3.1.2",
+  "org.apache.spark" %% "spark-sql" % "3.1.2",
+  "mysql" % "mysql-connector-java" % "8.0.28",
   "org.apache.spark" %% "spark-streaming-kinesis-asl" % "3.1.2"
 )

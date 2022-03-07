@@ -12,6 +12,7 @@ target
 # BlueJ files
 *.ctxt
 
+*.parquet
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
