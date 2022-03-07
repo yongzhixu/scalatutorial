@@ -28,9 +28,9 @@ object KafkaExample {
     val pattern = apacheLogPattern()
 
     // hostname:port for Kafka brokers, not Zookeeper
-    val kafkaParams = Map("metadata.broker.list" -> "localhost:9092")
+    val kafkaParams = Map("metadata.broker.list" -> "localhost:9092", "group.id"->"group1","bootstrap.servers"->"localhost:9092")
     // List of topics you want to listen for from Kafka
-    val topics = List("testLogs").toSet
+    val topics = List("topic-amos-test-topic").toSet
     // Create our Kafka stream, which will contain (topic,message) pairs. We tack a 
     // map(_._2) at the end in order to only get the messages, which contain individual
     // lines of data.

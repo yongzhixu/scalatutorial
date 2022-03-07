@@ -23,7 +23,7 @@ object FlumePushExample {
     val pattern = apacheLogPattern()
 
     // Create a Flume stream receiving from a given host & port. It's that easy.
-    val flumeStream = FlumeUtils.createStream(ssc, "localhost", 9092)
+    val flumeStream = FlumeUtils.createStream(ssc, "localhost", 9093)
     
     // Except this creates a DStream of SparkFlumeEvent objects. We need to extract the actual messages.
     // This assumes they are just strings, like lines in a log file.
