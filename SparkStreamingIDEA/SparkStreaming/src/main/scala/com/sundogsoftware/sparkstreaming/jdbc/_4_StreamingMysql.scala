@@ -4,6 +4,7 @@ import org.apache.spark.SparkConf
 import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.storage.StorageLevel
 
+import java.util
 import java.util.Properties
 import scala.collection.mutable.ListBuffer
 
@@ -30,8 +31,10 @@ object _4_StreamingMysql {
     testDF.createOrReplaceTempView("test")
     testDF.persist(StorageLevel.MEMORY_AND_DISK)
     //    testDF.printSchema()
-    testDF.show()
+    //    testDF.show()
 
+    var predicates = Array("name='john'","age<2")
+    JDBCUtils.queryTable("person", predicates, spark).show()
     val result = s"select * from test;"
     //      """.stripMargin
 
