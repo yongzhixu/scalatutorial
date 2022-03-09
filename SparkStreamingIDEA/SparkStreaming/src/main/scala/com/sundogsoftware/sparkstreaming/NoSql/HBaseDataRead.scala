@@ -7,7 +7,7 @@ import org.apache.spark.sql.SparkSession
 object HBaseDataRead {
   //  create table employee with two columns: personal and professional.
   //[using HBase shell] create 'employee', 'personal', 'professional'
-//  ref,https://medium.com/@thomaspt748/how-to-create-spark-dataframe-on-hbase-table-e9c8db31bb30
+  //  ref,https://medium.com/@thomaspt748/how-to-create-spark-dataframe-on-hbase-table-e9c8db31bb30
   def main(args: Array[String]): Unit = {
     import org.apache.hadoop.hbase.HBaseConfiguration
 
