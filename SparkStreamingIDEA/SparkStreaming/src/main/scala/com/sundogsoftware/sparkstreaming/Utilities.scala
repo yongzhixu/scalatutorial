@@ -5,6 +5,10 @@ import java.util.regex.Pattern
 import java.util.regex.Matcher
 
 object Utilities {
+
+  def getCurrentTimeStampMilli():Long={
+    System.currentTimeMillis()
+  }
     /** Makes sure only ERROR messages get logged to avoid log spam. */
   def setupLogging() = {
     import org.apache.log4j.{Level, Logger}   
