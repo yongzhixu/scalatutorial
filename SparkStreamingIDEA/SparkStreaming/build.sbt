@@ -25,5 +25,6 @@ libraryDependencies ++= Seq(
   "org.mongodb.spark" %% "mongo-spark-connector" % "3.0.1",
   "mysql" % "mysql-connector-java" % "8.0.28",
   "org.mongodb" % "bson" % "4.5.0",
+  "com.clickhouse" % "clickhouse-jdbc" % "0.3.2-patch7",
   "org.apache.hbase" % "hbase-client" % "2.4.9"
 )
