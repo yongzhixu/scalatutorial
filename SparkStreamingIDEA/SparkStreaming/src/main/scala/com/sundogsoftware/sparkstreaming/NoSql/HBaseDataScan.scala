@@ -1,10 +1,14 @@
 package com.sundogsoftware.sparkstreaming.NoSql
 
-import org.apache.hadoop.hbase.client.Get
+import org.apache.hadoop.hbase.CompareOperator
+import org.apache.hadoop.hbase.client.ConnectionFactory
+import org.apache.hadoop.hbase.filter.{BigDecimalComparator, BinaryComparator, ByteArrayComparable, CompareFilter, DependentColumnFilter, FamilyFilter, FilterList, RowFilter, SingleColumnValueExcludeFilter, SingleColumnValueFilter, ValueFilter}
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 
-object HBaseDataRead {
+import java.lang
+
+object HBaseDataScan {
   //  create table employee with two columns: personal and professional.
   //[using HBase shell] create 'employee', 'personal', 'professional'
   //  ref,https://medium.com/@thomaspt748/how-to-create-spark-dataframe-on-hbase-table-e9c8db31bb30
@@ -32,9 +36,10 @@ object HBaseDataRead {
     hBaseConf.set("hbase.cluster.distributed", "true")
 
     //    Create HBase connection using ConnectionFactory.
+    import org.apache.hadoop.hbase.client.Connection
     import org.apache.hadoop.hbase.client.ConnectionFactory
+    import org.apache.hadoop.hbase.client.Put
     import org.apache.hadoop.hbase.util.Bytes
-
     val conn = ConnectionFactory.createConnection(hBaseConf)
 
     //     Lets’ create an HBase table instance.
@@ -43,29 +48,42 @@ object HBaseDataRead {
     val table = TableName.valueOf(tableName)
     val HbaseTable = conn.getTable(table)
 
-    val get: Get= new Get(Bytes.toBytes("row1"))
     //     One of the ways to get data from HBase is to scan.
     //     Scan allows iteration over multiple rows for specified attributes.
     //     Lets’ initiate a client Scan instance and setup a filter criteria to retrieve the rows beginning with “Key”.
     //     Next let’s add columns to be included in the result set.
     //     The following is an example of a Scan on a Table instance.
+    import org.apache.hadoop.hbase.client.Result
+    import org.apache.hadoop.hbase.client.ResultScanner
     import org.apache.hadoop.hbase.client.Scan
-    import org.apache.hadoop.hbase.filter.{Filter, PrefixFilter}
+    import org.apache.hadoop.hbase.filter.PrefixFilter
+    import org.apache.hadoop.hbase.filter.Filter
 
     val scan = new Scan()
 
     val prfxValue = "Key"
+    val filterList = new FilterList()
     val filter: Filter = new PrefixFilter(Bytes.toBytes(prfxValue))
 
-    scan.setFilter(filter)
+//    val rowFilter: Filter = new RowFilter()
+    val columnFilter: Filter= new SingleColumnValueFilter(Bytes.toBytes("professional"),Bytes.toBytes("salary"),
+      CompareOperator.GREATER, Bytes.toBytes("8"))
+    val columnExcludeFilter:Filter =  new SingleColumnValueExcludeFilter(Bytes.toBytes("professional"),Bytes.toBytes("salary"),
+    CompareOperator.GREATER, Bytes.toBytes("8"))
+    filterList.addFilter(filter)
+    filterList.addFilter(columnFilter)
+//    filterList.addFilter(columnExcludeFilter)
 
 
     scan.addColumn(Bytes.toBytes("personal"), Bytes.toBytes("name"))
     scan.addColumn(Bytes.toBytes("personal"), Bytes.toBytes("city"))
     scan.addColumn(Bytes.toBytes("professional"), Bytes.toBytes("designation"))
     scan.addColumn(Bytes.toBytes("professional"), Bytes.toBytes("salary"))
+    scan.setFilter(filterList)
 
     val scanner = HbaseTable.getScanner(scan)
+
+    System.out.println(s"scanner is not empty: ${scanner.iterator().hasNext}")
 
 
     //    Iterate through each row and fetch data from each cell and
@@ -81,7 +99,9 @@ object HBaseDataRead {
         val colName = Bytes.toString(CellUtil.cloneQualifier(cell))
         val colValue = Bytes.toString(CellUtil.cloneValue(cell))
         resultMap = resultMap ++ Map(colName -> colValue)
+        System.out.print(s"colName is: ${colName},  colValue is: ${colValue};    ")
       })
+      System.out.println("")
       val resultList = List(resultMap)
       resValues = resValues ::: resultList
     }
@@ -94,6 +114,7 @@ object HBaseDataRead {
     //    Let’s create a Spark DataFrame using the List[Map[String,String]] collection.
     val colValLstMap = resValues
 
+    System.out.println(s"colValLstMap size is: ${colValLstMap.length}.")
     //    get column name from the map
     val colList = colValLstMap.map(x => {
       x.keySet
@@ -101,7 +122,6 @@ object HBaseDataRead {
 
     //    get all unique columns from the list
     val uniqColList = colList.reduce((x, y) => x ++ y)
-
     val emptyString = ""
     //add empty value for the non existing keys
     val newColValMap = colValLstMap.map(eleMap => {
@@ -109,9 +129,8 @@ object HBaseDataRead {
         (col, eleMap.getOrElse(col, emptyString))
       })).toMap
     })
-
-    import org.apache.spark.sql.Row
     import org.apache.spark.sql.types._
+    import org.apache.spark.sql.Row
 
     //    create rows
     val rows = newColValMap.map(m => {
@@ -128,6 +147,6 @@ object HBaseDataRead {
     //    create dataframe
     val resultDF = spark.sqlContext.createDataFrame(rdd, schema)
 
-    resultDF.show(100, false)
+    resultDF.sort("salary").show(100, false)
   }
 }

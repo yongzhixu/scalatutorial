@@ -1,5 +1,7 @@
 package com.sundogsoftware.sparkstreaming.NoSql
 
+import java.util.UUID
+
 object HBaseDataLoad {
 
   def main(args: Array[String]): Unit = {
@@ -9,10 +11,10 @@ object HBaseDataLoad {
     import org.apache.hadoop.hbase.HBaseConfiguration
 
     val hBaseConf = HBaseConfiguration.create()
-    hBaseConf.set("hbase.zookeeper.quorum", "localhost")
+    hBaseConf.set("hbase.zookeeper.quorum", "192.168.50.202")
     hBaseConf.set("hbase.rootdir", "file:///Uesrs/hadoop/dev/apps/hbase-2.2.2/hbasestorage")
     hBaseConf.set("hbase.zookeeper.property.clientPort", "2181")
-    hBaseConf.set("zookeeper.znode.parent", "/hbase")
+    hBaseConf.set("zookeeper.znode.parent", "/hbase-unsecure")
     hBaseConf.set("hbase.unsafe.stream.capability.enforce", "false")
     hBaseConf.set("hbase.cluster.distributed", "true")
 
@@ -37,23 +39,23 @@ object HBaseDataLoad {
     //    build list of records to insert
     val records: List[Map[String, Any]] = List(
       Map(
-        "id" -> 100,
+        "id" -> UUID.randomUUID().toString,
         "name" -> "Raju Karappan",
         "city" -> "St.Augustine",
         "designation" -> "Sr.Technique Architect",
-        "salary" -> 125000),
+        "salary" -> Math.ceil(Math.random()*100)),
       Map(
-        "id" -> 101,
+        "id" -> UUID.randomUUID().toString,
         "name" -> "Raju Karappan",
         "city" -> "St.Augustine",
         "designation" -> "Sr.Technique Architect",
-        "salary" -> 125000),
+        "salary" -> Math.ceil(Math.random()*100)),
       Map(
-        "id" -> 102,
+        "id" -> UUID.randomUUID().toString,
         "name" -> "Raju Karappan",
         "city" -> "St.Augustine",
         "designation" -> "Sr.Technique Architect",
-        "salary" -> 125000)
+        "salary" -> Math.ceil(Math.random()*100))
     )
 
     //    Iterate through each record to insert
