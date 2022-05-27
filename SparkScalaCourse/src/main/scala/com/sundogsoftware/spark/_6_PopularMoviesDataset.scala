@@ -3,7 +3,7 @@ package com.sundogsoftware.spark
 import org.apache.log4j._
 import org.apache.spark.sql._
 import org.apache.spark.sql.functions._
-import org.apache.spark.sql.types.{IntegerType, LongType, StructType}
+import org.apache.spark.sql.types.{IntegerType, LongType, StructType,DateType}
 
 /** Find the movies with the most ratings. */
 object _6_PopularMoviesDataset {

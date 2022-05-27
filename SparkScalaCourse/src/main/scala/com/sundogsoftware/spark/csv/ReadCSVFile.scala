@@ -3,6 +3,7 @@ import com.sundogsoftware.spark._2_FriendsByAgeDataset.FakeFriends
 import org.apache.spark.sql.{SQLContext, SparkSession}
 import org.apache.spark.{SparkConf, SparkContext}
 
+@throws[Exception]
 object ReadCSVFile {
 
   case class Employee(empno: String, ename: String, designation: String, manager: String, hire_date: String, sal: String, deptno: String)
