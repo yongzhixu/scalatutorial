@@ -6,6 +6,7 @@ import org.apache.hadoop.hbase.filter.{BigDecimalComparator, BinaryComparator, B
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 
+// value comparator reference" https://github.com/matiji66/hbase-value-comparator/blob/master/src/main/java/test/TestHbaseComparatorJava.java
 import java.lang
 
 object HBaseDataScan {
@@ -27,7 +28,7 @@ object HBaseDataScan {
 
     //    Set HBase configuration parameters using HBaseConfiguration.create() method.
     val hBaseConf = HBaseConfiguration.create()
-//    hBaseConf.set("hbase.zookeeper.quorum", "localhost")
+    //    hBaseConf.set("hbase.zookeeper.quorum", "localhost")
     hBaseConf.set("hbase.zookeeper.quorum", "192.168.50.202")
     hBaseConf.set("hbase.rootdir", "file:///Uesrs/hadoop/dev/apps/hbase-2.2.2/hbasestorage")
     hBaseConf.set("hbase.zookeeper.property.clientPort", "2181")
@@ -50,7 +51,7 @@ object HBaseDataScan {
 
     //     One of the ways to get data from HBase is to scan.
     //     Scan allows iteration over multiple rows for specified attributes.
-    //     Lets’ initiate a client Scan instance and setup a filter criteria to retrieve the rows beginning with “Key”.
+    //     Lets’ initiate a client Scan instance and setup a prefixFilter criteria to retrieve the rows beginning with “Key”.
     //     Next let’s add columns to be included in the result set.
     //     The following is an example of a Scan on a Table instance.
     import org.apache.hadoop.hbase.client.Result
@@ -63,16 +64,17 @@ object HBaseDataScan {
 
     val prfxValue = "Key"
     val filterList = new FilterList()
-    val filter: Filter = new PrefixFilter(Bytes.toBytes(prfxValue))
+    val prefixFilter: Filter = new PrefixFilter(Bytes.toBytes(prfxValue))
 
-//    val rowFilter: Filter = new RowFilter()
-    val columnFilter: Filter= new SingleColumnValueFilter(Bytes.toBytes("professional"),Bytes.toBytes("salary"),
+    //    val rowFilter: Filter = new RowFilter()
+    val columnFilter: Filter = new SingleColumnValueFilter(Bytes.toBytes("professional"), Bytes.toBytes("salary"),
+      CompareOperator.GREATER, new BinaryComparator(Bytes.toBytes("9")))
+    val columnExcludeFilter: Filter = new SingleColumnValueExcludeFilter(Bytes.toBytes("professional"), Bytes.toBytes("salary"),
       CompareOperator.GREATER, Bytes.toBytes("8"))
-    val columnExcludeFilter:Filter =  new SingleColumnValueExcludeFilter(Bytes.toBytes("professional"),Bytes.toBytes("salary"),
-    CompareOperator.GREATER, Bytes.toBytes("8"))
-    filterList.addFilter(filter)
-    filterList.addFilter(columnFilter)
-//    filterList.addFilter(columnExcludeFilter)
+    val valueFilter: Filter = new ValueFilter(CompareOperator.LESS, new BinaryComparator(Bytes.toBytes(99)))
+    filterList.addFilter(prefixFilter)
+//    filterList.addFilter(valueFilter)
+    //    filterList.addFilter(columnExcludeFilter)
 
 
     scan.addColumn(Bytes.toBytes("personal"), Bytes.toBytes("name"))
@@ -83,7 +85,7 @@ object HBaseDataScan {
 
     val scanner = HbaseTable.getScanner(scan)
 
-    System.out.println(s"scanner is not empty: ${scanner.iterator().hasNext}")
+//    System.out.println(s"scanner is not empty: ${scanner.iterator().hasNext}")
 
 
     //    Iterate through each row and fetch data from each cell and

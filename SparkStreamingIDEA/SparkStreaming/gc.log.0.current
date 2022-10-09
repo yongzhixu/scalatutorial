@@ -1,0 +1,21 @@
+OpenJDK 64-Bit Server VM (25.332-b08) for windows-amd64 JRE (1.8.0_332-b08), built on Apr 16 2022 08:31:02 by "Administrator" with MS VC++ 12.0 (VS2013)
+Memory: 4k page, physical 16493624k(691776k free), swap 41097192k(7154272k free)
+CommandLine flags: -XX:GCLogFileSize=10485760 -XX:InitialHeapSize=263897984 -XX:MaxHeapSize=4222367744 -XX:NumberOfGCLogFiles=7 -XX:+PrintGC -XX:+PrintGCTimeStamps -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseGCLogFileRotation -XX:-UseLargePagesIndividualAllocation -XX:+UseParallelGC 
+1.271: [GC (Allocation Failure)  64512K->6992K(247296K), 0.0067132 secs]
+1.877: [GC (Allocation Failure)  71504K->7668K(247296K), 0.0042865 secs]
+2.368: [GC (Metadata GC Threshold)  65872K->8535K(247296K), 0.0039726 secs]
+2.372: [Full GC (Metadata GC Threshold)  8535K->8166K(182784K), 0.0176971 secs]
+4.574: [GC (Allocation Failure)  72678K->13655K(182784K), 0.0023241 secs]
+4.992: [GC (Allocation Failure)  78167K->14703K(182784K), 0.0023755 secs]
+5.173: [GC (Metadata GC Threshold)  37615K->14009K(207872K), 0.0036408 secs]
+5.176: [Full GC (Metadata GC Threshold)  14009K->10776K(256000K), 0.0201897 secs]
+6.445: [GC (Allocation Failure)  101912K->18346K(256000K), 0.0048417 secs]
+6.831: [GC (Allocation Failure)  109482K->18386K(302592K), 0.0061744 secs]
+9.062: [GC (Allocation Failure)  156114K->25011K(302592K), 0.0106553 secs]
+9.170: [GC (Metadata GC Threshold)  37688K->23307K(349696K), 0.0037983 secs]
+9.174: [Full GC (Metadata GC Threshold)  23307K->16602K(394240K), 0.0772413 secs]
+10.252: [GC (Allocation Failure)  198874K->28763K(394240K), 0.0089667 secs]
+11.440: [GC (Allocation Failure)  211035K->29993K(451584K), 0.0076812 secs]
+13.333: [GC (Metadata GC Threshold)  260251K->37325K(454144K), 0.0125786 secs]
+13.345: [Full GC (Metadata GC Threshold)  37325K->34852K(535040K), 0.0773597 secs]
+13.941: [GC (Allocation Failure)  274468K->40064K(604160K), 0.0084835 secs]
